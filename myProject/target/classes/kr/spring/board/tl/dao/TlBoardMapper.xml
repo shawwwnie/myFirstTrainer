@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper   
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<mapper namespace="kr.spring.board.tl.dao.TlBoardMapper">
+	
+	<select id="selectTlBoardCommentList" parameterType="map" resultType="tlBoardCommentVO">
+		SELECT * 
+		FROM (SELECT b.*, rownum rnum 
+			  FROM (SELECT a.*, to_char(a.tlc_modify_date,'yyyy-mm-dd') str_date 
+			  		FROM (SELECT * 
+			  			  FROM board_tl_comment c JOIN member m ON c.writer_mem_num=m.mem_num
+			  			  )a 
+			  		WHERE a.tl_mem_num=#{tl_mem_num} 
+			  		ORDER BY tlc_num DESC
+			  		)b 
+			  )
+		<![CDATA[
+		WHERE rnum >= #{start} AND rnum <= #{end}
+		]]>
+	</select> 
+
+</mapper>

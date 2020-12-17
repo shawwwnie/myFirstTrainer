@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+    <definition name="userType" extends="main">
+    	<put-attribute name="title" value="회원타입선택"/>
+    	<put-attribute name="body" value="/WEB-INF/views/member/userRegisterTypeSelect.jsp"/>  
+    </definition>
+    <definition name="memberRegister" extends="main">
+    	<put-attribute name="title" value="일반회원선택"/>
+    	<put-attribute name="body" value="/WEB-INF/views/member/memberRegister.jsp"/>  
+    </definition>
+    <definition name="login" extends="main">
+    	<put-attribute name="title" value="일반회원선택"/>
+    	<put-attribute name="body" value="/WEB-INF/views/member/login.jsp"/>  
+    </definition>
+    <definition name="trainerRegister" extends="main">
+       <put-attribute name="title" value="트레이너 회원선택"/>
+       <put-attribute name="body" value="/WEB-INF/views/member/trainerRegister.jsp"/>  
+    </definition>
+    <definition name="findIdPw" extends="main">
+       <put-attribute name="title" value="아이디비밀번호찾기"/>
+       <put-attribute name="body" value="/WEB-INF/views/member/findIdPw.jsp"/>  
+    </definition>
+        <definition name="findId" extends="main">
+       <put-attribute name="title" value="아이디찾기결과"/>
+       <put-attribute name="body" value="/WEB-INF/views/member/findId.jsp"/>  
+    </definition>
+    <definition name="findPw" extends="main">
+       <put-attribute name="title" value="비밀번호찾기결과"/>
+       <put-attribute name="body" value="/WEB-INF/views/member/findPw.jsp"/>  
+    </definition>
+    <definition name="memberView" extends="main">
+       <put-attribute name="title" value="일반회원마이페이지"/>
+       <put-attribute name="body" value="/WEB-INF/views/member/memberView.jsp"/>  
+    </definition>
+    <definition name="trainerView" extends="main">
+       <put-attribute name="title" value="트레이너마이페이지"/>
+       <put-attribute name="body" value="/WEB-INF/views/member/trainerView.jsp"/>  
+    </definition>
+    <definition name="memberModify" extends="main">
+    	<put-attribute name="title" value="일반회원 상세정보 수정"/>
+    	<put-attribute name="body" value="/WEB-INF/views/member/memberModify.jsp"/>  
+    </definition> 
+    <definition name="trainerModify" extends="main">
+    	<put-attribute name="title" value="트레이너 상세정보 수정"/>
+    	<put-attribute name="body" value="/WEB-INF/views/member/trainerModify.jsp"/>  
+    </definition> 
+    
+    <definition name="memberChangePassword" extends="main">
+    	<put-attribute name="title" value="일반회원 비밀번호 수정"/>
+    	<put-attribute name="body" value="/WEB-INF/views/member/memberChangePassword.jsp"/>  
+    </definition> 
+    <definition name="trainerChangePassword" extends="main">
+    	<put-attribute name="title" value="트레이너 비밀번호 수정"/>
+    	<put-attribute name="body" value="/WEB-INF/views/member/trainerChangePassword.jsp"/>  
+    </definition> 
+    <definition name="memberDelete" extends="main">
+    	<put-attribute name="title" value="일반회원 탈퇴"/>
+    	<put-attribute name="body" value="/WEB-INF/views/member/memberDelete.jsp"/>  
+    </definition> 
+    <definition name="trainerDelete" extends="main">
+    	<put-attribute name="title" value="트레이너 탈퇴"/>
+    	<put-attribute name="body" value="/WEB-INF/views/member/trainerDelete.jsp"/>  
+    </definition>
+    <definition name="register_confirm" extends="main">
+       <put-attribute name="title" value="회원가입 확인"/>
+       <put-attribute name="body" value="/WEB-INF/views/member/register_confirm.jsp"/>  
+    </definition>
+</tiles-definitions>
+
+
+
+
+
+
+

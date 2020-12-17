@@ -1,0 +1,40 @@
+@charset "UTF-8";
+div#nutriInsertForm{
+	float:left;
+	margin-bottom: 50px;
+	margin-left: 35%;
+	display: block;
+}
+
+div#main-div{
+	width:530px;
+	height:750px;
+	display: block;
+	background-color: #0ed9df;
+	position: relative;
+}
+
+div#sub-div{
+	width:490px;
+	height:710px;
+	background-color: #ffffff;
+	position: absolute;
+	top:20px;
+	left:20px;
+	text-align: center;
+}
+form{
+	margin:20px;
+}
+input{
+	margin : 10px;
+  text-align: center;
+  box-sizing: border-box;
+  border-radius:15px;
+  font-family: "montserrat",sans-serif;
+}
+
+.error-color{
+	color:#ff0000;
+}
+

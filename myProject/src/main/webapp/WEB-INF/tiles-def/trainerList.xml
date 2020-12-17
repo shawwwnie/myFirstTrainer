@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+    <definition name="trainerList" extends="main">
+    	<put-attribute name="title" value="트레이너 리스트 페이지"/>
+    	<put-attribute name="body" value="/WEB-INF/views/trainerList/trainerList.jsp"/>  
+    </definition>
+    <definition name="trainerListDetail" extends="main">
+    	<put-attribute name="title" value="트레이서 상세 정보 페이지"/>
+    	<put-attribute name="body" value="/WEB-INF/views/trainerList/trainerListDetail.jsp"/>  
+    </definition>
+   <!--  <definition name="trainerListDetail" template="/WEB-INF/views/template/layout3.jsp">
+    	<put-attribute name="title" value="트레이서 상세 정보 페이지"/>
+    	<put-attribute name="header" value="/WEB-INF/views/template/header.jsp"/>
+    	<put-attribute name="main_body" value="/WEB-INF/views/trainerList/trainerListDetail.jsp"/>
+	    <put-attribute name="sub_body" value="/WEB-INF/views/trainerList/trainerDetailComment.jsp"/>
+    	<put-attribute name="footer" value="/WEB-INF/views/template/footer.jsp"/>        
+    </definition> -->
+    <definition name="prUpdate" extends="main">
+    	<put-attribute name="title" value="트레이너 프로필 사진 변경 페이지"/>
+    	<put-attribute name="body" value="/WEB-INF/views/trainerList/prUpdate.jsp"/>  
+    </definition>
+    <definition name="introUpdate" extends="main">
+    	<put-attribute name="title" value="트레이너 자기소개 변경 페이지"/>
+    	<put-attribute name="body" value="/WEB-INF/views/trainerList/introUpdate.jsp"/>
+    </definition>
+    <definition name="matchingList" extends="main">
+    	<put-attribute name="title" value="트레이너 신청 내역 확인 페이지"/>
+    	<put-attribute name="body" value="/WEB-INF/views/trainerList/matchingList.jsp"/>
+    </definition>
+</tiles-definitions>
+
+
+
+
+
+
+

@@ -1,0 +1,79 @@
+@charset "UTF-8";
+
+/*리스트*/
+div#feedList{
+	width:90%;
+	margin:30px auto;
+}
+
+div#output{
+	margin-left: 60px;
+} 
+
+div.content{
+	width:500px;
+	height:500px;
+	margin:20px;
+	float:left;
+	position: relative;
+	border-radius:15px;
+	box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.1);
+}
+
+p{
+	text-align: center;
+    margin: 50px;
+}
+
+h1.feedType{
+	text-align: center;
+    font-size: 20px;
+    margin-top: 150px;
+}
+
+img.thumbnail{
+	width: 500px;
+	height: 500px;
+	margin: 0 auto;
+	border-radius:15px;
+}
+
+div.img{
+	width: 500px;
+	height: 500px;
+	position: relative;
+}
+
+
+div.textArea{
+	width: 500px;
+	height: 500px;
+	color : #fff;
+	position: absolute;
+	top:0;
+	border-radius:16px;
+	display: none;
+	background-color: rgba(0, 0, 0, 0.5);
+
+}
+
+div.content:hover > .textArea{
+	display:block;
+}
+
+
+/*리모컨 버튼*/
+.writeButton {
+    width: 70px;
+    height: 70px;
+    border: none;
+    border-radius: 35px;
+}
+
+input.topButton {
+    width: 70px;
+    height: 70px;
+    background-color:#0de9df;
+    border: none;
+    border-radius: 35px;
+}

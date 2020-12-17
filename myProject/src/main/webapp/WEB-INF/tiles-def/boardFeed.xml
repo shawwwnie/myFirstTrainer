@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+    <definition name="feedWrite" extends="main">
+    	<put-attribute name="title" value="피드 글쓰기"/>
+    	<put-attribute name="body" value="/WEB-INF/views/boardFeed/feedWrite.jsp"/>  
+    </definition>
+    <definition name="feedDetail" extends="main">
+    	<put-attribute name="title" value="피드 글 상세"/>
+    	<put-attribute name="body" value="/WEB-INF/views/boardFeed/feedDetail.jsp"/>  
+    </definition>
+    <definition name="feedModify" extends="main">
+    	<put-attribute name="title" value="피드 글 수정"/>
+    	<put-attribute name="body" value="/WEB-INF/views/boardFeed/feedModify.jsp"/>  
+    </definition>
+    <definition name="myPersonalList" extends="main">
+    	<put-attribute name="title" value="퍼스널게시판"/>
+    	<put-attribute name="body" value="/WEB-INF/views/boardFeed/myPersonalList.jsp"/>  
+    </definition>
+    <definition name="feedReco" extends="main">
+       <put-attribute name="title" value="추천게시판"/>
+       <put-attribute name="body" value="/WEB-INF/views/boardFeed/feedReco.jsp"/>  
+    </definition>
+    <definition name="myFeed" extends="main">
+       <put-attribute name="title" value="내 피드"/>
+       <put-attribute name="body" value="/WEB-INF/views/boardFeed/myFeed.jsp"/>  
+    </definition>
+    <definition name="myMembersFeed" extends="main">
+       <put-attribute name="title" value="내 회원의 피드"/>
+       <put-attribute name="body" value="/WEB-INF/views/boardFeed/myMembersFeed.jsp"/>  
+    </definition>
+    <definition name="otherPersonalList" extends="main">
+    	<put-attribute name="title" value="다른사람의 퍼스널게시판"/>
+    	<put-attribute name="body" value="/WEB-INF/views/boardFeed/otherPersonalList.jsp"/>  
+    </definition>
+    <definition name="otherFeedDetail" extends="main">
+    	<put-attribute name="title" value="다른사람의 글 상세"/>
+    	<put-attribute name="body" value="/WEB-INF/views/boardFeed/otherFeedDetail.jsp"/>  
+    </definition>
+</tiles-definitions>
+
+
+
+
+
+
+

@@ -1,0 +1,83 @@
+@charset "UTF-8";
+
+div#nutriList{
+	width:1020px;
+	height:80%;
+	float:left;
+	margin-top:60px;
+	margin-bottom: 50px;
+	margin-left: 23%;
+	display: block;
+}
+
+div#main-div{
+	width:1020px;
+	height:850px;
+	display: block;
+	background-color: #0ed9df;
+	position: relative;
+}
+
+div#sub-div{
+	width:980px;
+	height:810px;
+	background-color: #ffffff;
+	position: absolute;
+	top:20px;
+	left: 20px;
+}
+
+div#search-bar{
+	margin-top:50px;
+}
+
+
+ul li input{
+  text-align: center;
+  border-radius:15px;
+  border : 3px solid black;
+  box-sizing: border-box;
+  font-family: "montserrat",sans-serif;
+  font-size : 15px;
+  width:700px;
+  height:50px;
+  margin:10px;
+  display: inline;
+  float: left;
+}
+
+div > input {
+	margin-top: 10px;
+	margin-right: 10px;
+	float:left;
+	display:inline;
+	width:80px;
+	height:50px;
+	border-radius:15px;
+  	box-sizing: border-box;
+  	border:none;
+}
+/*-- -------------------------Result Table-------------------------- */
+
+div#result{
+	width:500px;
+	height:600px;
+	margin:0;
+	position: absolute;
+	top:200px;
+	left:250px;
+	text-align: center;
+	font-size:20px;
+}
+
+#result-ul > li{
+	list-style-image:url(../images/header/list-icon.png);
+	font-size: 20px;
+}
+
+div#paging{
+	margin-top:30px;
+	top:500px;
+	left:230px;
+}
+

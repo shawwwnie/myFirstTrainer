@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper   
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<mapper namespace="kr.spring.board.feed.dao.FeedMapper3"> 
+
+ 	<!-- (일반회원) 전체 피드 리스트 받아오기(팔로워의 팔로워 공개 이상 글 + 내가 쓴 글 중 팔로워 공개 이상 글) -->
+	<select id="selectFeedList" parameterType="map" resultType="feedVO">
+		SELECT feed_num,feed_type,feed_content,
+		TO_CHAR(feed_reg_date,'YYYY-MM-DD HH24:MI:SS') feed_reg_date,
+		feed_file,feed_filename,feed_ip,mem_num,mem_id,feed_auth 
+		FROM (SELECT a.*, rownum rnum
+			  FROM (SELECT * 
+				    FROM feed
+				    WHERE mem_num IN (SELECT follower_to 
+									  FROM follower 
+									  WHERE mem_num=#{mem_num} <![CDATA[AND feed_auth > 1]]>
+									  ) 
+								  OR mem_num=#{mem_num} <![CDATA[ AND feed_auth > 1]]>
+				  )a
+			  ORDER BY feed_num DESC	
+			  )
+		<![CDATA[
+		WHERE rnum >= #{start} AND rnum <= #{end}	]]>
+		
+	</select>
+	
+	<!-- (일반회원) 전체 피드의 수 카운트 -->
+	<select id="selectFeedCount" parameterType="map" resultType="integer">
+		SELECT COUNT(*)
+		FROM feed
+		WHERE mem_num IN (SELECT follower_to 
+						  FROM follower 
+						  WHERE mem_num=#{mem_num} <![CDATA[AND feed_auth > 1]]>
+						  ) 
+					  OR mem_num=#{mem_num} <![CDATA[AND feed_auth > 1]]>
+	</select>
+	
+	<!-- (트레이너)전체 피드 리스트 받아오기 (팔로워(+내회원)의 팔로워 공개 이상 글 + 내 회원의 트레이너 공개 이상 글 +  내가 쓴 글 중 팔로워 공개 이상 글) -->
+	<select id="selectFeedListForT" parameterType="map" resultType="feedVO">
+		SELECT feed_num,feed_type,feed_content,
+		TO_CHAR(feed_reg_date,'YYYY-MM-DD HH24:MI:SS') feed_reg_date,
+		feed_file,feed_filename,feed_ip,mem_num,mem_id,feed_auth
+		FROM (SELECT a.*, rownum rnum
+			  FROM (SELECT * 
+					FROM feed
+					WHERE mem_num IN (SELECT follower_to 
+                  					  FROM follower 
+                  					  WHERE mem_num=#{mem_num} <![CDATA[AND feed_auth > 1)]]> 
+					   OR mem_num IN (SELECT training_to 
+					                  FROM training 
+					                  WHERE mem_num=#{mem_num} AND feed_auth=1)                     
+					   OR mem_num=#{mem_num} <![CDATA[AND feed_auth > 0]]>
+					)a
+					ORDER BY feed_num DESC	
+			  )
+		<![CDATA[
+		WHERE rnum >= #{start} AND rnum <= #{end}]]>
+		
+	</select>
+	
+	<!--  (트레이너) 전체  피드의 수 카운트 -->
+	<select id="selectFeedForTCount" parameterType="map" resultType="integer">
+		SELECT COUNT(*) 
+		FROM feed
+		WHERE mem_num IN (SELECT follower_to 
+                  					  FROM follower 
+                  					  WHERE mem_num=#{mem_num} <![CDATA[AND feed_auth > 1)]]> 
+					   OR mem_num IN (SELECT training_to 
+					                  FROM training 
+					                  WHERE mem_num=#{mem_num} AND feed_auth=1)                     
+					   OR mem_num=#{mem_num} <![CDATA[AND feed_auth > 0]]>
+	</select>
+
+	<!-- (트레이너)내회원의 피드 리스트 받아오기 -->
+	<select id="selectMyMemberFeedList" parameterType="map" resultType="feedVO">
+		SELECT feed_num,feed_type,feed_content,
+		TO_CHAR(feed_reg_date,'YYYY-MM-DD HH24:MI:SS') feed_reg_date,
+		feed_file,feed_filename,feed_ip,mem_num,mem_id,feed_auth
+		FROM (SELECT a.*, rownum rnum
+			  FROM (SELECT *
+					FROM feed
+					WHERE mem_num IN (SELECT training_to
+									  FROM training 
+									  WHERE mem_num=#{mem_num}) 
+					<![CDATA[AND feed_auth > 0]]>
+				   )a
+			  ORDER BY feed_num DESC
+			  )
+		<![CDATA[
+		WHERE rnum >= #{start} AND rnum <= #{end}
+		]]>
+		  
+	</select>
+	
+	<!-- (트레이너)내회원의 피드의 수 카운트 -->
+	<select id="selectMyMemberFeedCount" parameterType="map" resultType="integer">
+		SELECT COUNT(*)
+		FROM feed
+		WHERE mem_num IN (SELECT training_to
+						  FROM training 
+						  WHERE mem_num=#{mem_num} <![CDATA[AND feed_auth > 0]]>
+						  ) 
+	</select>
+	
+	<select id="selectAllFeedList" parameterType="map" resultType="feedVO">
+		SELECT feed_num,feed_type,feed_content,
+				TO_CHAR(feed_reg_date,'YYYY-MM-DD HH24:MI:SS') feed_reg_date,
+				feed_file,feed_filename,feed_ip,mem_num,mem_id,feed_auth 
+		FROM (SELECT a.*, rownum rnum
+			  FROM (SELECT *
+			  		FROM feed)a
+			  ORDER BY feed_num DESC
+			  )
+		<![CDATA[
+		WHERE rnum >= #{start} AND rnum <= #{end}
+		]]>
+	</select>
+
+</mapper>

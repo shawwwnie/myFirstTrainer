@@ -1,0 +1,243 @@
+@charset "UTF-8";
+
+div#nutriCal{
+	width:500px;
+	height:80%;
+	float:left;
+	margin-bottom: 50px;
+	margin-left: 23%;
+	display: block;
+}
+
+div#nutriCalResult{
+	width:500px;
+	height:80%;
+	float:left;
+	margin-top:63px;
+	margin-left:20px;
+	margin-bottom:50px;
+	margin-right:20%;
+	display:inline-block;
+}
+
+div#nutrimentDetail{
+	width:500px;
+	height:80%;
+	float:left;
+	margin-bottom: 50px;
+	margin-left: 38%;
+	display: block;
+}
+
+div#bg1{
+	width:500px;
+	height:700px;
+	background-color: #0ed9df;
+	position: relative;
+}
+
+div#bg2{
+	width:460px;
+	height:660px;
+	background-color: #ffffff;
+	position: absolute;
+	top:20px;
+	left: 20px;
+}
+
+div#formdiv{
+	padding:90px;
+	text-align: center;
+}
+
+label{
+	margin-top: 10px;
+}
+
+input{
+	margin : 10px;
+  text-align: center;
+  box-sizing: border-box;
+  border-radius:15px;
+  font-family: "montserrat",sans-serif;
+}
+
+div#formdiv > ul > li{
+	margin-bottom: 10px;
+}
+
+/************결과 퍼센트 그래프 div *************/
+
+div#type-image{
+	margin-bottom: 20px;
+}
+
+div#type-image p{
+	text-align: center;
+}
+
+div#fast-bar,#normal-bar,#healthy-bar,#low-bar,#high-bar{
+	width:350px;
+	height:50px;
+	display:block;
+	float:left;
+	border:1px solid #9c9c9c;
+	margin-top:50px;
+	margin-left:50px;
+	margin-right:50px;
+	margin-bottom:30px;
+}
+
+
+/*fast*/
+div#fast-bar > div#carb {
+	width:30%;
+	height:50px;
+	background-color:#ffc000;
+	float:left;
+}
+
+div#fast-bar > div#protein {
+	width:50%;
+	height:50px;
+	background-color:#00b4ff;
+	float:left;
+}
+div#fast-bar > div#fat {
+	width:20%;
+	height:50px;
+	background-color:#ff0c00;
+	float:left;
+	
+}
+
+/*normal*/
+div#normal-bar > div#carb {
+	width:40%;
+	height:50px;
+	background-color:#ffc000;
+	float:left;
+}
+
+div#normal-bar > div#protein {
+	width:40%;
+	height:50px;
+	background-color:#00b4ff;
+	float:left;
+}
+div#normal-bar > div#fat {
+	width:20%;
+	height:50px;
+	background-color:#ff0c00;
+	float:left;
+	
+}
+
+/*#healthy*/
+div#healthy-bar > div#carb {
+	width:50%;
+	height:50px;
+	background-color:#ffc000;
+	float:left;
+}
+
+div#healthy-bar > div#protein {
+	width:30%;
+	height:50px;
+	background-color:#00b4ff;
+	float:left;
+}
+div#healthy-bar > div#fat {
+	width:20%;
+	height:50px;
+	background-color:#ff0c00;
+	float:left;
+}
+/*#low*/
+div#low-bar > div#carb {
+	width:30%;
+	height:50px;
+	background-color:#ffc000;
+	float:left;
+}
+
+div#low-bar > div#protein {
+	width:50%;
+	height:50px;
+	background-color:#00b4ff;
+	float:left;
+}
+div#low-bar > div#fat {
+	width:20%;
+	height:50px;
+	background-color:#ff0c00;
+	float:left;
+}
+div#low-bar > p#pro-info {
+	color: #0ab1a9;
+}
+
+/*high*/
+div#high-bar > div#carb {
+	width:40%;
+	height:50px;
+	background-color:#ffc000;
+	float:left;
+}
+
+div#high-bar > div#protein {
+	width:40%;
+	height:50px;
+	background-color:#00b4ff;
+	float:left;
+}
+div#high-bar > div#fat {
+	width:20%;
+	height:50px;
+	background-color:#ff0c00;
+	float:left;
+}
+
+div#high-bar > p#pro-info {
+	color: #0ab1a9;
+}
+
+
+
+/************none-result div***************/
+
+div#non-result{}
+
+div#non-result > p{
+	color:#7e7e7e; 
+	text-align:center;
+}
+
+
+/******************Detail table style*******************/
+table{
+	width:80%;
+	margin:100px auto;
+	border:1px solid #000;
+	border-collapse:collapse;
+}
+
+table td, table th{
+	border:1px solid #000;
+	padding:5px;
+	text-align: center;
+	font-size: 16px;
+}
+
+div#button{
+	text-align: center;
+}
+
+
+
+
+
+
+
+
+

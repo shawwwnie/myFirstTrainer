@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.spring.board.tranqna.dao.TranQnABoardMapper">
+
+	<select id="selectRowCount" parameterType="map" resultType="integer">
+		SELECT
+			COUNT(*)
+		FROM board_tranqna b JOIN member m
+		ON b.mem_num = m.mem_num
+		WHERE			  		
+	  		<if test="tq_type==2">
+	  			b.tq_type = 1 OR b.tq_type = 0
+	  		</if>
+	  		<if test="tq_type==0">
+	  			b.tq_type = 0
+	  		</if>
+	  		<if test="tq_type==1">
+	  			b.tq_type = 1
+	  		</if>
+		<where>
+			<if test="keyword != '' and keyfield == 'title'">
+				b.tq_title LIKE '%' || #{keyword} || '%'
+			</if>
+			<if test="keyword != '' and keyfield == 'id'">
+				m.id LIKE '%' || #{keyword} || '%'
+			</if>
+			<if test="keyword != '' and keyfield == 'content'">
+				b.tq_content LIKE '%' || #{keyword} || '%'
+			</if>
+			<if test="keyword != '' and keyfield == 'all'">
+				b.tq_title LIKE '%' || #{keyword} || '%' or
+				m.id LIKE '%' || #{keyword} || '%' or
+				b.tq_content LIKE '%' || #{keyword} || '%'
+			</if>
+		</where>		
+	</select>
+	
+	<select id="selectList" parameterType="map" resultType="tranQnABoardVO">	
+		SELECT
+			e.*, f.* 
+		FROM (SELECT
+				a.*,
+				rownum rnum
+			  FROM (SELECT
+			  			*
+			  		FROM board_tranqna b JOIN member m
+			  		ON b.mem_num = m.mem_num
+			  		WHERE			  		
+			  		<if test="tq_type==2">
+			  			b.tq_type = 1 OR b.tq_type = 0
+			  		</if>
+			  		<if test="tq_type==0">
+			  			b.tq_type = 0
+			  		</if>
+			  		<if test="tq_type==1">
+			  			b.tq_type = 1
+			  		</if>
+			  		<where>
+			  			<if test="keyoword !='' and keyfield == 'title'">
+			  				AND b.tq_title LIKE '%' || #{keyword} || '%'
+			  			</if>
+			  			<if test="keyword != '' and keyfield == 'id'">
+							AND m.id LIKE '%' || #{keyword} || '%'
+						</if>
+						<if test="keyword != '' and keyfield == 'content'">
+							AND b.tq_content LIKE '%' || #{keyword} || '%'
+						</if>
+						<if test="keyword != '' and keyfield == 'all'">
+							AND b.tq_title LIKE '%' || #{keyword} || '%' or
+							m.id LIKE '%' || #{keyword} || '%' or
+							b.tq_content LIKE '%' || #{keyword} || '%'
+						</if>						
+			  		</where>			  		
+			  		ORDER BY b.tq_num DESC)a) e
+			  LEFT JOIN (SELECT tq_num, count(*) commentNum FROM board_tranqna_comment GROUP BY tq_num) f
+        ON e.tq_num = f.tq_num
+		<![CDATA[
+			WHERE rnum >= #{start} AND rnum <= #{end}
+		]]>	
+		ORDER BY e.tq_num DESC
+	</select>
+	
+	<select id="selectBoardTranqna" parameterType="integer" resultType="tranQnABoardVO">
+		SELECT * FROM board_tranqna b JOIN member m USING(mem_num) WHERE tq_num = #{tq_num}
+	</select>
+
+	<update id="updateHitBoardTranqna" parameterType="integer">
+		UPDATE board_tranqna SET tq_hit=tq_hit+1 WHERE tq_num=#{tq_num}
+	</update>
+	
+	<update id="updateBoardTranqna" parameterType="tranQnABoardVO">
+		UPDATE 
+			board_tranqna
+		SET 
+			tq_title = #{tq_title},
+			tq_content = #{tq_content},
+			tq_modify_date = SYSDATE,
+			tq_type = #{tq_type},
+			tq_file = #{tq_file},
+			tq_filename = #{tq_filename},
+			tq_ip = #{tq_ip}
+		WHERE
+			tq_num = #{tq_num}
+	</update>
+	
+	<update id="updateBoardTranqnaExImg" parameterType="tranQnABoardVO">
+		UPDATE 
+			board_tranqna
+		SET 
+			tq_title = #{tq_title},
+			tq_content = #{tq_content},
+			tq_modify_date = SYSDATE,
+			tq_type=#{tq_type},
+			tq_ip = #{tq_ip}
+		WHERE
+			tq_num = #{tq_num}
+	</update>
+	
+ 	<select id="selectListTranqnaComment" parameterType="integer" resultType="tranQnABoardCommentVO">
+		SELECT
+			a.*, b.*, to_char(a.tqc_modify_date,'yyyy-mm-dd') str_date
+		FROM 
+		    (SELECT * FROM board_tranqna_comment c JOIN member m USING(mem_num) ORDER BY c.tqc_num DESC) a  
+		LEFT JOIN 
+		    (SELECT tqc_num, COUNT(*) countComment FROM board_tranqna_comment_reply GROUP BY tqc_num) b 
+		ON a.tqc_num = b.tqc_num
+		WHERE a.tq_num = #{tq_num}
+	</select>
+	
+	<select id="selectReplyComment" parameterType="integer" resultType="tranQnABoardCommentReplyVO">
+		SELECT 
+			r.*, m.*, to_char(r.rtqc_date,'yyyy-mm-dd') str_date 
+		FROM 
+			board_tranqna_comment_reply r 
+			JOIN 
+			member m ON r.mem_num = m.mem_num 
+		WHERE 
+			r.tqc_num = #{tqc_num}
+	</select>
+	
+	<insert id="insertReplyComment" parameterType="tranQnABoardCommentReplyVO">
+		INSERT INTO 
+			board_tranqna_comment_reply (rtqc_num,rtqc_comment,tqc_num,mem_num) 
+		VALUES 
+			(rtqc_num_seq.nextval,#{rtqc_comment},#{tqc_num},#{mem_num})
+	</insert>
+	
+	<delete id="deleteReplyComment" parameterType="integer">
+		DELETE FROM
+			board_tranqna_comment_reply
+		WHERE
+			rtqc_num=#{rtqc_num}
+	</delete>
+	  
+	
+</mapper>

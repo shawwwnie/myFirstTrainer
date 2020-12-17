@@ -1,0 +1,83 @@
+@charset "UTF-8";
+
+div#feedDetail{
+	border-top:1px solid #0de0df;
+	border-bottom:1px solid #0de0df;
+	width:78%;
+	margin: 0 0 0 27%;
+	padding-bottom: 30px;
+}
+
+div#userInfo{
+	width:1000px;
+	height:200px;
+}
+
+div#memberPhoto{
+	width:200px; height: 200px;
+	margin-top:30px;
+	margin-left:80px;
+	float:left;
+}
+
+div#userText{
+	width:300px;
+	display: inline-block;
+	float:left;
+	margin-top:70px;
+	margin-left:20px;
+	font-size: 20pt;
+}
+
+div#content{}
+
+p#feedType{
+	text-align: right;
+	margin-right: 50px;
+	font-size:9pt;
+	color:#808080;
+}
+
+div#photo{}
+
+div#photo > img{
+	margin: 0 20%;
+}
+
+div#textContent{
+	min-height: 100px;
+	width:1000px;
+	margin-left: 80px;
+	margin-top: 20px;
+}
+div#textContent > p{
+	display: inline;
+	font-size: 12pt;
+}
+
+div#textContent > p#acc{	
+	color:#c0c0c0;
+}
+
+div#buttonContainer{
+	float: right;
+}
+
+input{
+	margin : 10px;
+	padding: 5px;
+	width: 50px;
+ 	text-align: center;
+ 	box-sizing: border-box;
+	border-radius: 15px;
+	border: 1px solid #fff;
+	font-family: "montserrat",sans-serif;
+}
+
+div#commentContainer > h3{	
+	margin-left: 40px;
+}
+
+form#commentbox{}
+
+div.container{	padding:40px;}

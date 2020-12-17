@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+    <definition name="main" template="/WEB-INF/views/template/layout1.jsp">
+    	<put-attribute name="title" value="Spring 회원제 게시판"/>
+    	<put-attribute name="header" value="/WEB-INF/views/template/header.jsp"/>
+    	<put-attribute name="body" value=""/>  
+    	<put-attribute name="footer" value="/WEB-INF/views/template/footer.jsp"/>        
+    </definition>
+    <definition name="" template="/WEB-INF/views/template/layout2.jsp">
+    	<put-attribute name="title" value=""/>
+    	<put-attribute name="header" value="/WEB-INF/views/template/header.jsp"/>
+    	<put-attribute name="left" value="/WEB-INF/views/template/left.jsp"/> 
+    	<put-attribute name="body" value=""/>  
+    	<put-attribute name="footer" value="/WEB-INF/views/template/footer.jsp"/>        
+    </definition>
+</tiles-definitions>
+
+<!-- main.jsp 는 설정상 tiles 사용 안할거라 main.xml이 필요없지만 일단 남겨둠 (홍아현) -->
+
+
+
+

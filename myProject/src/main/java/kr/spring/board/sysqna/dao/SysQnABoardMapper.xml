@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.spring.board.sysqna.dao.SysQnABoardMapper">
+
+	<select id="selectRowCount" parameterType="map" resultType="integer">
+		SELECT
+			COUNT(*)
+		FROM board_sysqna b JOIN member m
+		ON b.mem_num = m.mem_num
+		<where>
+			<if test="keyword != '' and keyfield == 'title'">
+				b.sq_title LIKE '%' || #{keyword} || '%'
+			</if>
+			<if test="keyword != '' and keyfield == 'id'">
+				m.id LIKE '%' || #{keyword} || '%'
+			</if>
+			<if test="keyword != '' and keyfield == 'content'">
+				b.sq_content LIKE '%' || #{keyword} || '%'
+			</if>
+			<if test="keyword != '' and keyfield == 'all'">
+				b.sq_title LIKE '%' || #{keyword} || '%' or
+				m.id LIKE '%' || #{keyword} || '%' or
+				b.sq_content LIKE '%' || #{keyword} || '%'
+			</if>
+		</where>		
+	</select>
+	
+	<select id="selectList" parameterType="map" resultType="sysQnABoardVO">	
+	 SELECT e.*, f.* FROM
+		 (SELECT 
+		    d.*, rownum rnum
+		 FROM 
+		    (SELECT 
+		       *
+		    FROM
+		     (SELECT a.*, rownum asc_rnum
+		     FROM  (SELECT
+		                b.sq_num,b.sq_title,b.sq_modify_date,b.sq_filename,m.mem_num,m.mem_id
+		          FROM 
+		            board_sysqna b JOIN member m
+		          ON 
+		            b.mem_num = m.mem_num
+			  		<where>
+			  			<if test="keyoword !='' and keyfield == 'title'">
+			  				b.sq_title LIKE '%' || #{keyword} || '%'
+			  			</if>
+			  			<if test="keyword != '' and keyfield == 'id'">
+							m.id LIKE '%' || #{keyword} || '%'
+						</if>
+						<if test="keyword != '' and keyfield == 'content'">
+							b.sq_content LIKE '%' || #{keyword} || '%'
+						</if>
+						<if test="keyword != '' and keyfield == 'all'">
+							b.sq_title LIKE '%' || #{keyword} || '%' or
+							m.id LIKE '%' || #{keyword} || '%' or
+							b.sq_content LIKE '%' || #{keyword} || '%'
+						</if>
+			  		</where>
+			  		ORDER BY b.sq_num) a) c
+				ORDER BY c.asc_rnum DESC) d) e
+			LEFT JOIN (SELECT sq_num, count(*) commentNum FROM board_sysqna_comment GROUP BY sq_num) f
+        ON e.sq_num = f.sq_num
+		<![CDATA[
+			WHERE rnum >= #{start} AND rnum <= #{end}
+		]]>	
+		ORDER BY e.sq_num DESC
+	</select>
+	
+	<update id="updateBoardSysqna" parameterType="sysQnABoardVO">
+		UPDATE 
+			board_sysqna
+		SET 
+			sq_title = #{sq_title},
+			sq_content = #{sq_content},
+			sq_modify_date = SYSDATE,
+			sq_file = #{sq_file},
+			sq_filename = #{sq_filename},
+			sq_ip = #{sq_ip}
+		WHERE
+			sq_num = #{sq_num}
+	</update>
+	
+	<update id="updateBoardSysqnaExImg" parameterType="sysQnABoardVO">
+		UPDATE 
+			board_sysqna
+		SET 
+			sq_title = #{sq_title},
+			sq_content = #{sq_content},
+			sq_modify_date = SYSDATE,
+			sq_ip = #{sq_ip}
+		WHERE
+			sq_num = #{sq_num}
+	</update>
+	
+	<select id="selectListSysqnaComment" parameterType="integer" resultType="SysQnABoardCommentVO">
+		SELECT
+			a.*, to_char(a.sqc_modify_date,'yyyy-mm-dd') str_date
+		FROM 
+		    (SELECT * FROM board_sysqna_comment c JOIN member m USING(mem_num) ORDER BY c.sq_num DESC) a 
+		WHERE 
+			a.sq_num = #{sq_num}
+	</select>
+	
+</mapper>

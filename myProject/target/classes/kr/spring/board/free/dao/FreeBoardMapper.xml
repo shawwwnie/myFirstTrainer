@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.spring.board.free.dao.FreeBoardMapper">
+
+	<select id="selectRowCount" parameterType="map" resultType="integer">
+		SELECT
+			COUNT(*)
+		FROM board_free b JOIN member m
+		ON b.mem_num = m.mem_num
+		<where>
+			free_type = 0 
+			<if test="keyword != '' and keyfield == 'title'">
+				AND b.free_title LIKE '%' || #{keyword} || '%'
+			</if>
+			<if test="keyword != '' and keyfield == 'id'">
+				AND m.id LIKE '%' || #{keyword} || '%'
+			</if>
+			<if test="keyword != '' and keyfield == 'content'">
+				AND b.free_content LIKE '%' || #{keyword} || '%'
+			</if>
+			<if test="keyword != '' and keyfield == 'all'">
+				AND b.free_title LIKE '%' || #{keyword} || '%' or
+				m.id LIKE '%' || #{keyword} || '%' or
+				b.free_content LIKE '%' || #{keyword} || '%'
+			</if>
+		</where>		
+	</select>
+	
+	<select id="selectList" parameterType="map" resultType="freeBoardVO">	
+		SELECT
+			c.*, d.*
+		FROM (SELECT
+				a.*,
+				rownum rnum
+			  FROM (SELECT
+			  			*
+			  		FROM board_free b JOIN member m
+			  		ON b.mem_num = m.mem_num
+			  		<where>
+			  			free_type = 0
+			  			<if test="keyoword !='' and keyfield == 'title'">
+			  				AND b.free_title LIKE '%' || #{keyword} || '%'
+			  			</if>
+			  			<if test="keyword != '' and keyfield == 'id'">
+							AND m.id LIKE '%' || #{keyword} || '%'
+						</if>
+						<if test="keyword != '' and keyfield == 'content'">
+							AND b.free_content LIKE '%' || #{keyword} || '%'
+						</if>
+						<if test="keyword != '' and keyfield == 'all'">
+							AND b.free_title LIKE '%' || #{keyword} || '%' or
+							m.id LIKE '%' || #{keyword} || '%' or
+							b.free_content LIKE '%' || #{keyword} || '%'
+						</if>
+						<if test="alarm == 1">
+							AND b.alarm > 0
+						</if>
+			  		</where>
+			  		ORDER BY b.free_num DESC)a)c LEFT JOIN (SELECT free_num, COUNT(*) commentNum FROM board_free_comment GROUP BY free_num) d
+			  		ON c.free_num=d.free_num
+		<![CDATA[
+			WHERE rnum >= #{start} AND rnum <= #{end}
+		]]>	
+		ORDER BY c.free_num DESC
+	</select>
+	
+	<update id="updateBoardFree" parameterType="freeBoardVO">
+		UPDATE 
+			board_free
+		SET 
+			free_title = #{free_title},
+			free_content = #{free_content},
+			free_modify_date = SYSDATE,
+			free_file = #{free_file},
+			free_filename = #{free_filename},
+			free_ip = #{free_ip}
+		WHERE
+			free_num = #{free_num}
+	</update>
+	
+	<update id="updateBoardFreeExImg" parameterType="freeBoardVO">
+		UPDATE 
+			board_free
+		SET 
+			free_title = #{free_title},
+			free_content = #{free_content},
+			free_modify_date = SYSDATE,
+			free_ip = #{free_ip}
+		WHERE
+			free_num = #{free_num}
+	</update>
+	
+	<select id="selectListFreeComment" parameterType="integer" resultType="freeBoardCommentVO">
+		SELECT
+			a.*, b.*, to_char(a.freec_modify_date,'yyyy-mm-dd') str_date
+		FROM 
+		    (SELECT * FROM board_free_comment c JOIN member m USING(mem_num) ORDER BY c.freec_num DESC) a  
+		LEFT JOIN 
+		    (SELECT freec_num, COUNT(*) countComment FROM board_free_comment_reply GROUP BY freec_num) b 
+		ON a.freec_num = b.freec_num
+		WHERE a.free_num = #{free_num}
+	</select>
+
+</mapper>

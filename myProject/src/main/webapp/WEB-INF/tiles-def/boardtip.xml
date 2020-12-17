@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+    <definition name="boardTipList" extends="main">
+    	<put-attribute name="title" value="팁게시판 목록"/>
+    	<put-attribute name="body" value="/WEB-INF/views/boardTip/boardTipList.jsp"/>  
+    </definition>
+    <definition name="boardTipWrite" extends="main">
+    	<put-attribute name="title" value="팁게시판 쓰기"/>
+    	<put-attribute name="body" value="/WEB-INF/views/boardTip/boardTipWrite.jsp"/>  
+    </definition>
+    <definition name="boardTipView" extends="main">
+    	<put-attribute name="title" value="팁게시판 글상세"/>
+    	<put-attribute name="body" value="/WEB-INF/views/boardTip/boardTipView.jsp"/>  
+    </definition>
+    <definition name="boardTipModify" extends="main">
+    	<put-attribute name="title" value="팁게시판 수정"/>
+    	<put-attribute name="body" value="/WEB-INF/views/boardTip/boardTipModify.jsp"/>  
+    </definition>
+</tiles-definitions>

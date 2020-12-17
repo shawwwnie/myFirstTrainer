@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="nutriList" template="/WEB-INF/views/template/layout1.jsp">
+    	<put-attribute name="title" value="영양성분 검색기"/>
+    	<put-attribute name="header" value="/WEB-INF/views/template/header.jsp"/>
+    	<put-attribute name="body" value="/WEB-INF/views/nutriment/nutriList.jsp"/>  
+    	<put-attribute name="footer" value="/WEB-INF/views/template/footer.jsp"/>        
+    </definition>
+    <definition name="nutrimentCal" template="/WEB-INF/views/template/layout1.jsp">
+    	<put-attribute name="title" value="일일 권장 영양소 계산기"/>
+    	<put-attribute name="header" value="/WEB-INF/views/template/header.jsp"/>
+    	<put-attribute name="body" value="/WEB-INF/views/nutriment/nutrimentCal.jsp"/>
+    	<put-attribute name="footer" value="/WEB-INF/views/template/footer.jsp"/>        
+    </definition>
+    <definition name="nutrimentDetail" template="/WEB-INF/views/template/layout1.jsp">
+    	<put-attribute name="title" value="영양성분 검색 결과"/>
+    	<put-attribute name="header" value="/WEB-INF/views/template/header.jsp"/>
+    	<put-attribute name="body" value="/WEB-INF/views/nutriment/nutrimentDetail.jsp"/>  
+    	<put-attribute name="footer" value="/WEB-INF/views/template/footer.jsp"/>        
+    </definition>
+    <definition name="nutrimentGuide" template="/WEB-INF/views/template/layout1.jsp">
+    	<put-attribute name="title" value="식단 가이드"/>
+    	<put-attribute name="header" value="/WEB-INF/views/template/header.jsp"/>
+    	<put-attribute name="body" value="/WEB-INF/views/nutriment/nutrimentGuide.jsp"/>  
+    	<put-attribute name="footer" value="/WEB-INF/views/template/footer.jsp"/>        
+    </definition>
+    <definition name="nutrimentInsertForm" template="/WEB-INF/views/template/layout1.jsp">
+    	<put-attribute name="title" value="영양 성분 등록 폼"/>
+    	<put-attribute name="header" value="/WEB-INF/views/template/header.jsp"/>
+    	<put-attribute name="body" value="/WEB-INF/views/nutriment/nutrimentInsertForm.jsp"/>  
+    	<put-attribute name="footer" value="/WEB-INF/views/template/footer.jsp"/>        
+    </definition>
+    <definition name="nutrimentModify" template="/WEB-INF/views/template/layout1.jsp">
+    	<put-attribute name="title" value="영양 성분 수정 폼"/>
+    	<put-attribute name="header" value="/WEB-INF/views/template/header.jsp"/>
+    	<put-attribute name="body" value="/WEB-INF/views/nutriment/nutrimentModify.jsp"/>  
+    	<put-attribute name="footer" value="/WEB-INF/views/template/footer.jsp"/>        
+    </definition>
+    
+    
+    
+    
+</tiles-definitions>

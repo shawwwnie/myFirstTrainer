@@ -1,0 +1,361 @@
+@CHARSET "UTF-8";
+
+/*=========레이아웃=========*/
+div#main{
+	margin:0 auto;
+	font-size:10pt;
+	font-family: "맑은 고딕";
+}
+div#main_header{
+	width:100%;
+	height:100px;
+	margin-bottom: 10px;
+	padding: 0 10px 0 0;
+}
+div#main_menu{
+	float:left;
+	width:17%;
+	min-height:400px;
+}
+div#main_body{
+	float:left;
+	width:78%;
+	padding:5px 5px 30px 5px;
+}
+div#main_footer{
+	clear:both;
+	width:100%;
+}
+
+/*==========메뉴==========*/
+div#main_menu ul{
+	list-style:none;
+}
+div#main_menu ul li{
+	margin-bottom:5px; 
+}
+
+/*==========페이지 기본 스타일======*/
+.page-main-style{
+	width: 900px;
+    margin: 30px 30% 30px 32%;
+}
+.one-page{
+	width:600px;
+	margin:0 auto;
+}
+/*==========메시지======*/
+.result-display{
+	width:400px;
+	margin:50px auto;
+	border:1px solid #000;
+	padding:100px 0 100px 0;
+	text-align:center;
+}
+.align-center{
+	text-align:center;
+}
+.align-right{
+	text-align:right;
+}
+.error-color{
+	color:#ff0000;
+}
+
+div.align-right > input{
+	margin : 10px;
+    float: right;
+    display: inline;
+    width: 70px;
+    height: 35px;
+    border-radius: 15px;
+    box-sizing: border-box;
+    border: none;
+}
+
+/*Mypage*/
+.mypage-div{
+	width:48%;
+	float:left;
+	padding:5px;
+}
+.my-photo{
+	object-fit: cover;
+    object-position: top; /*정사각형이 아니라 직사각형일 경우 원 안에 보여지게 할 중심 이미지의 위치를 지정*/
+    border-radius: 50%;/*사각형의 모서리 둥근 정도를 지정하는 속성인데 50%를 지정하면 완전한 원이 됨*/
+}
+
+/*목록*/
+form#search_form{
+	border: none;
+}
+ul.search{
+	width:500px;
+	list-style:none;
+	padding:0;
+	margin:0 auto;
+}
+ul.search li{
+	margin:0 0 9px 0;
+	padding:0;
+	display:inline;
+}
+select#keyfield{
+	width:70px;
+	height:30px;
+	border:2px solid #8e8689;
+	border-radius: 15px;
+}
+ul.search input[type="text"]{
+    display: inline;
+    width: 280px;
+    height: 30px;
+    border-radius: 15px;
+    box-sizing: border-box;
+    border: 2px solid #0ed9df;
+}
+
+div.page-main-style input[type="submit"],
+div.page-main-style input[type="button"]{
+    display: inline;
+    width: 70px;
+    height: 30px;
+    border-radius: 15px;
+    box-sizing: border-box;
+    border: none;
+    cursor: pointer;
+}
+
+table{
+	width:100%;
+	margin:5px auto;
+	border:1px solid #000;
+	border:0px;
+	border-collapse:collapse;
+}
+table th{
+	border:1px solid #000;
+	padding:5px;
+	border-left:none;
+	border-right:none;
+}
+table td{
+	border:1px solid #c0c0c0;
+	padding:5px;
+	border-left:none;
+	border-right:none;
+	text-align: center;
+}
+
+/*등록,수정폼*/
+form{
+	width:600px;
+	margin:0 auto;
+	border:2px solid #0ed9df;
+	border-radius: 15px;
+	padding:10px 10px 10px 30px;
+	overflow: hidden;
+}
+
+ul{
+	list-style:none;
+}
+label{
+	width:130px;
+	float:left;
+}
+input[type="text"]{
+	width:200px;
+}
+input[type="text"].title{
+	width:373px;
+	height:18px;
+	margin-bottom:10px;
+}
+input#upload{
+    display: inline;
+    border-radius: 15px;
+    box-sizing: border-box;
+    border: none;	 
+}
+label.upload{
+	margin-left:130px;
+	display:block;
+	width: 130px;
+    height: 30px;
+    border-radius: 15px;
+    box-sizing: border-box;
+	background-color: #ebebeb;
+	line-height:28px;
+	padding-left:10px;
+}
+
+input[type="button"].delete_img{
+	width:130px;
+	cursor: pointer;
+}
+
+.tipBoardTable td{
+	height:50px;
+}
+
+/*================페이지 10개씩,20개씩등등 보기=============*/
+.boardListBelowPart{
+	position:relative;
+}
+
+.boardPaging-selectbox {
+	position : absolute;
+	top:0px;
+	right:10px;
+	float: left;
+	width: 100px;
+	height: 25px;
+	margin-right: 5px;
+	z-index: 10;
+}
+
+ul.selectbox-options {
+	position: absolute;
+	top:5px;
+	width: 100%;
+	height: 23px;
+	max-height: 40px;
+	margin: 0;
+	padding: 0;
+	border: 1px solid #aaa;
+	background-color: #fcfcfc;
+	z-index: 9;
+	transition: max-height .5s ease-out;
+}
+ul.selectbox-options li {
+	list-style: none;
+	padding: 0 7px;
+	display: block;
+}
+ul.selectbox-options.opened {
+	height: auto;
+	max-height: 500px;
+}
+ul.selectbox-options li:not(.init) {
+	display: none;
+	height: 25px;
+	padding: 0 10px;
+	line-height: 25px;
+	font-size: 12px;
+}
+ul.selectbox-options li.selected {
+	font-weight: bold;
+}
+ul.selectbox-options li.init,
+ul.selectbox-options li:first-child{
+	background-repeat: no-repeat;
+	background-image: url(../images/board/selectbox.png);
+	background-position: 100% -2px;
+	height:25px;
+}
+ul.selectbox-options.opened li.init,
+ul.selectbox-options.opened li:first-child,
+ul.selectbox-options.opened li.init:first-child {
+	background-position: 100% -30px;
+}
+ul.selectbox-options.opened li {
+	display: block;
+}
+
+ul.selectbox-options li.selected {
+	display: block;
+}
+ul.selectbox-options li:hover {
+	background-color: #f5f5f5;
+}
+/*=========알림=========*/
+.alarm{
+	font-weight:bold;
+	color:grey;
+	cursor:pointer;
+}
+.alarm_reset{
+	font-weight:bold;
+	color:grey;
+	cursor:pointer;
+}
+/*=====================댓글창======================*/
+form#commentbox{
+	border:none;
+}
+input#comment{
+    display: inline;
+    width: 400px;
+    height: 37px;
+    border-radius: 15px;
+    box-sizing: border-box;
+    border: 2px solid #0ed9df;
+}
+div.commentList a:hover{
+	cursor: pointer;
+	color:blue;
+	text-decoration: underline;
+}
+
+.boardCofC{
+	line-height : 15px;
+	padding-top: 0px;
+	cursor: pointer;
+}
+
+div.list_boardcofc{
+	padding : 0px 0px 10px 20px;
+}
+
+#replyComment_content{
+	display: inline;
+    width: 300px;
+    height: 25px;
+    border-radius: 15px;
+    box-sizing: border-box;
+    border: 2px solid #0ed9df;
+    margin-left:10px;
+}
+/*=========================트레이너게시판===========================*/
+.onlyTrainerimg{
+	max-width:16px;
+	position:relative;
+	top:2px;
+}
+.onlyTrainer{
+	color:grey;
+	font-weight:bold;
+}
+
+/*=====================알림=====================*/
+
+.table_notice .more1,
+.table_notice .more2{
+	color:grey;
+	font-size:12px;
+	font-weight:normal;
+}
+
+.table_notice a{
+	/*메인색보다는 좀더 진하게 설정함*/
+	color:#0cdacf;
+	font-weight:bold;
+	cursor:pointer;
+}
+.confirmed{
+	color:black;
+}
+
+.text_overflow{
+	display: -webkit-box;
+	margin:1px; 
+	max-height:40px; 
+	overflow:hidden; 
+	vertical-align:top; 
+	text-overflow: ellipsis; 
+	word-break:break-all; 
+	-webkit-box-orient:vertical; 
+	-webkit-line-clamp:2;
+}
+

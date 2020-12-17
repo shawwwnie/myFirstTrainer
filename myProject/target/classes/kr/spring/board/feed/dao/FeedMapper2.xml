@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper   
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<mapper namespace="kr.spring.board.feed.dao.FeedMapper2">  
+
+	<select id="myPersnolList" parameterType="map" resultType="feedVO">
+		SELECT feed_num,feed_type,feed_content,
+		TO_CHAR(feed_reg_date,'YYYY-MM-DD HH24:MI:SS') feed_reg_date,
+		feed_file,feed_filename,feed_ip,mem_num,mem_id,feed_auth 
+		FROM (SELECT a.*, rownum rnum
+			  FROM (SELECT * 
+				    FROM feed
+				    WHERE mem_num = #{mem_num}
+					ORDER BY feed_reg_date DESC
+				  )a	
+			  )
+		<![CDATA[
+		WHERE rnum >= #{start} AND rnum <= #{end}	]]>
+		
+	</select>
+	
+	
+	<select id="otherPersnolList" parameterType="map" resultType="feedVO">
+		SELECT feed_num,feed_type,feed_content,
+		TO_CHAR(feed_reg_date,'YYYY-MM-DD HH24:MI:SS') feed_reg_date,
+		feed_file,feed_filename,feed_ip,mem_num,mem_id,feed_auth 
+		FROM (SELECT a.*, rownum rnum
+			  FROM (SELECT * 
+				    FROM feed
+				    WHERE mem_num=#{mem_num} <![CDATA[ AND feed_auth > #{relation}]]>
+				  )a
+			  ORDER BY feed_num DESC	
+			  )
+		<![CDATA[
+		WHERE rnum >= #{start} AND rnum <= #{end}	]]>
+		
+	</select>
+	
+	<select id="countingOtherFeedList" parameterType="map" resultType="integer">
+		SELECT COUNT(*)
+		FROM feed
+		WHERE mem_num=#{mem_num} <![CDATA[AND feed_auth > #{relation}]]>
+	</select>
+	
+	<update id="updateFeedBoard" parameterType="feedVO">
+		UPDATE 
+			feed
+		SET 
+			<if test="feed_filename != ''">
+			feed_file=#{feed_file},
+			feed_filename = #{feed_filename},
+			</if>
+			feed_type = #{feed_type},
+			feed_auth = #{feed_auth},
+			feed_content = #{feed_content},
+			feed_ip = #{feed_ip}
+		WHERE
+			feed_num = #{feed_num}
+	</update>
+	
+	<select id="selectListFeedComment" parameterType="integer" resultType="FeedCommentVO">
+		SELECT
+			a.*, b.*, to_char(a.feedc_modify_date,'yyyy-mm-dd') str_date
+		FROM 
+		    (SELECT * FROM feed_comment c JOIN member m USING(mem_num) ORDER BY c.feedc_num DESC) a  
+		LEFT JOIN 
+		    (SELECT feedc_num, COUNT(*) countComment FROM feed_comment GROUP BY feedc_num) b 
+		ON a.feedc_num = b.feedc_num
+		WHERE a.feed_num = #{feed_num}
+	</select>
+</mapper>
+
+
+
+
+
+
+

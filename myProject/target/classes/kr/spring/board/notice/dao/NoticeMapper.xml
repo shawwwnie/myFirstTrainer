@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.spring.board.notice.dao.NoticeMapper">
+
+	 <select id="selectList" parameterType="map" resultType="noticeVO">
+	 	SELECT
+	 	  *
+	 	FROM (SELECT
+	 	         a.*,
+	 	         rownum rnum
+	 	      FROM (SELECT 
+	 	              *
+	 	            FROM notice n JOIN member m
+	 	            ON n.reply_mem_num=m.mem_num
+	 	            AND n.writer_memnum = #{writer_memnum}
+                    AND CHECK_DATE is null
+	 	            ORDER BY n.board_num DESC)a)
+	 <![CDATA[
+	 	WHERE rnum >= #{start} AND rnum <= #{end}
+	 ]]>	            
+	 </select>
+	 
+	 <select id="selectRowCount" parameterType="map" resultType="integer">
+	 	SELECT
+	 	   COUNT(*)
+	 	FROM notice n JOIN member m
+	 	ON n.reply_mem_num = m.mem_num   
+	 	WHERE writer_memnum = #{writer_memnum}  AND CHECK_DATE is null                   
+	 </select>
+	 
+	 <insert id="insertNoticeVO" parameterType="noticeVO">
+	 	INSERT INTO
+	 		notice
+	 	(
+	 		notice_num,
+	 		board_num,
+	 		writer_memnum,
+	 		reply_mem_num,
+	 		writer_board,
+	 		board_comment,
+	 		notice_comment,
+	 		return_url
+	 	) VALUES (
+	 		notice_num_seq.nextval,
+	 		#{board_num},
+	 		#{writer_memnum},
+	 		#{reply_mem_num},
+	 		#{writer_board},
+	 		#{board_comment},
+	 		#{notice_comment},
+	 		#{return_url}
+	 	)	 	
+	 </insert>
+
+</mapper>

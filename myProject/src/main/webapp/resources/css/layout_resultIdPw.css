@@ -1,0 +1,79 @@
+@charset "UTF-8";
+
+body {
+  background: white;
+  font-family: 'Inter UI', sans-serif;
+  margin: 0;
+}
+ 
+.container {
+  display: flex;
+  height: 320px;
+  margin: 0 auto;
+  width: 640px;
+}
+
+@media (max-width: 767px) {
+  .container { 
+    flex-direction: column;
+    height: 630px;
+    width: 320px;
+  }
+}
+
+.right {
+  background: #DAEFF5;
+  box-shadow: 0px 0px 40px 16px rgba(0,0,0,0.22);
+  color: #000;
+  position: relative;
+  width: 50%;
+  margin:0 auto;
+}
+
+@media (max-width: 767px) {
+  .right {
+    flex-shrink: 0;
+    height: 100%;
+    width: 100%;
+    max-height: 350px;
+  }
+}
+
+.form {
+  margin: 30% 20%;
+  position: absolute;
+}
+
+input {
+  background: transparent;
+  border: 0;
+  color: #000;
+  font-size: 20px;
+  height: 30px;
+  line-height: 30px;
+  outline: none !important;
+  width: 100%;
+}
+
+input::-moz-focus-inner { 
+  border: 0; 
+}
+
+#submit {
+  color: #000;
+  transition: color 300ms;
+}
+
+#submit:hover{
+   transform: scale(0.96);
+   cursor:pointer;
+}
+
+.confirm_btn:hover{
+   transform: scale(0.96);
+   cursor:pointer;
+}
+.id_result{
+	text-align:center;
+	margin-top:10%;
+}
