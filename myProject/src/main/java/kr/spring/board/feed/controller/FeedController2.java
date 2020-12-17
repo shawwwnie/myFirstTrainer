@@ -26,7 +26,7 @@ import kr.spring.board.tl.vo.TlBoardVO;
 import kr.spring.member.service.MemberService;
 import kr.spring.member.vo.MemberVO;
 
-//조재희
+
 @Controller
 public class FeedController2 {
 	private Logger log = Logger.getLogger(this.getClass());

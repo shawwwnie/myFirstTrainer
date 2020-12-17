@@ -21,7 +21,7 @@ import kr.spring.board.feed.vo.FeedVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.util.PagingUtil;
 
-//이상훈
+
 @Controller
 public class FeedController1 {
 	//로거 생성
